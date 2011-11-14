@@ -1,0 +1,28 @@
+teste<- read.csv("C:/Users/VISSOCI/Jrvissoci/Pró-Esporte/Duke/Sem/BaseSEM.csv",header=T)
+MEId<-teste[3]
+MERE<-teste[1]
+MEIn<-teste[2]
+MIAO<-teste[4]
+MIEE<-teste[5]
+teste$groupos<-factor(teste$groupos,labels=c("inical","intermediario","final"))
+mean (MEId)
+sd(MEId)
+var(MEId)
+median(MEId)
+quantile(MEId)
+pvec<-seq(0,1,0.1)
+pvec
+quantile(teste,pvec)
+
+sum(!is.na(teste))
+teste<-edit(teste)
+summary(MEId)
+summary(teste)
+
+boxplot(teste$MERE,teste$MEIn,teste$MEId,teste$MIAO,teste$MIEE,teste$MIC)
+title(sub="1-External Regulation,2-Introjection,3-Identification,4-Reach Goals,5-Stimulating Experiences,6-Knowledge",xlab="Self-determined Motivation")
+boxplot(teste$RP,teste$SP,teste$OP,teste$RM,teste$SM,teste$OM)
+title(xlab="Perceived Parental Support")
+boxplot(teste$SCI)
+title(xlab="Sport Confrontation Index")
+
