@@ -1,4 +1,4 @@
-teste<- read.csv("C:/Users/VISSOCI/Jrvissoci/Pró-Esporte/Duke/Sem/BaseSEM.csv",header=T)
+teste<- read.csv("C:/Users/VISSOCI/Jrvissoci/Prï¿½-Esporte/Duke/Sem/BaseSEM.csv",header=T)
 MEId<-teste[3]
 MERE<-teste[1]
 MEIn<-teste[2]
@@ -13,6 +13,8 @@ quantile(MEId)
 pvec<-seq(0,1,0.1)
 pvec
 quantile(teste,pvec)
+
+#Teste
 
 sum(!is.na(teste))
 teste<-edit(teste)
