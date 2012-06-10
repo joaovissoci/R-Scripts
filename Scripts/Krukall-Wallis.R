@@ -1,0 +1,18 @@
+setwd("C:/Users/user/Jrvissoci/Duke")
+
+data<-read.csv("data.csv",header=T)
+summary(data)
+
+kruskal.test(data$Q1 ~ data$Grupos, data= data)
+kruskal.test(data$Q2 ~ data$Grupos, data= data)
+kruskal.test(data$Q3 ~ data$Grupos, data= data)
+kruskal.test(data$Q4 ~ data$Grupos, data= data)
+kruskal.test(data$Q5 ~ data$Grupos, data= data)
+kruskal.test(data$Q6 ~ data$Grupos, data= data)
+kruskal.test(data$Q7 ~ data$Grupos, data= data)
+kruskal.test(data$Q8 ~ data$Grupos, data= data)
+kruskal.test(data$Q9 ~ data$Grupos, data= data)
+kruskal.test(data$Q10 ~ data$Grupos, data= data)
+kruskal.test(data$Q11 ~ data$Grupos, data= data)
+kruskal.test(data$Q12 ~ data$Grupos, data= data)
+kruskal.test(data$Q13 ~ data$Grupos, data= data)

@@ -1,0 +1,60 @@
+#Install 
+library(nonrandom)
+
+PSData<-read.csv("PSData.csv",header=T)
+PSData
+
+#SELECTING THE PS MODEL - relative effect
+
+PSData.effect <- relative.effect(data = PSData,
+    formula = obito_r~tghdldic+causa_r+ano_obito+Exp_razao+Follow+Sexo_r+Idade+Dm_r+Tabag_r+Colest_r+Trig_r
+                                 +HAS_r+Sed_r+Alc_r+Estresse+peso+alt+IMC+DAC+PAS+PAD+Cint+Tempo+Vo2+c_t+ldl
+                                 +hdl+glic+trigli+tg_hdl+SM) #pst=outcome/therapie=grouping/tgr and age=covariates
+PSData.effect
+
+#PROPENSITY SCORE ESTIMATION
+
+vx = vx[!is.na(PSData)]
+PSData.ps <- pscore(data = PSData,formula = obito_r~causa_r+ano_obito+Exp_razao+Follow+Sexo_r+Idade+Dm_r+Tabag_r+Colest_r+Trig_r
+                                 +HAS_r+Sed_r+Alc_r+Estresse+peso+alt+IMC+DAC+PAS+PAD+Cint+Tempo+Vo2+c_t+ldl
+                                 +hdl+glic+trigli+tg_hdl+SM,name.pscore="ps")
+#pscore.plot(object=PSData.ps,
+#    main="Density Plot",
+#    with.legend=TRUE,
+#    cex.main=1.6, cex.axis=1.4, legend.cex=1.25, cex.lab=1.5,
+#    par.1=list(lty=1, lwd=2), par.0=list(lty=3, lwd=2),
+#    xlab="",
+#    ylim=c(0,4.5),na.rm=T)
+
+#MATCHING BY PS
+PSData.m <- ps.match(object = PSData.ps,
+    ratio = 1, x = 0.2, caliper = "logit",
+    matched.by = "ps", setseed = 38902)
+PSData.m
+
+# BALANCE CHECK
+
+## Figure 2 (left)
+plot1 <- dist.plot(object = PSData.m,   
+                   plot.type = 1, compare = TRUE,
+  bar.cex = 1.2, legend.cex=1.5, sub.cex=1.2,
+  label.match = c("original data","matched sample"),
+  col=c("gray65", "gray35"))
+>
+> ## Figure 2 (right)
+plot2 <- dist.plot(object = PSData.m,  plot.type = 2, compare = TRUE,
+ bar.cex = 1.2, legend.cex=1.2, sub.cex=1.2,
+ legend.title = "Therapy",
+ col=c("gray65", "gray35"))
+
+# TREATMENT EFFECTS - PS.Estimate
+
+estimate <- ps.estimate(object = PSData.m,
+resp = "SEVERE",
+family = "binomial")
+pride.estimate.m
+
+#Important Arguments
+# $data/$data.matched
+
+

@@ -1,0 +1,6 @@
+tais<-read.csv("c:/tais2.csv",header=T)#Puxa o banco de dados
+
+boxplot(tais$RAEH~tais$Grupos)# Comando para rodar o boxplot
+
+#Note que utiliza o sinal ~ para representar que a variavel y (RAEH) é definida pela variável x (Grupos).
+#Utilizamos o sinal $ para afirmar o programa R que a variável RAEH, por exemplo, é uma integrante do banco tais.
